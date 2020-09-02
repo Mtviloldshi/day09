@@ -10,11 +10,11 @@ public class CustomerView {
         customerList.addCustomer(cust2);
         do {
             System.out.println("---------- 信息统计 ----------");
-            System.out.println("--------------1--------------");
-            System.out.println("--------------2--------------");
-            System.out.println("--------------3--------------");
-            System.out.println("--------------4--------------");
-            System.out.println("--------------5--------------");
+            System.out.println("--------------1添加--------------");
+            System.out.println("--------------2删除--------------");
+            System.out.println("--------------3修改--------------");
+            System.out.println("--------------4遍历--------------");
+            System.out.println("--------------5退出--------------");
             int select = CMUtility.readChar();
             switch (select) {
                 case '1':
@@ -36,18 +36,25 @@ public class CustomerView {
         }while (flag ==true);
     }
     private void addNewCustomer(){
+        System.out.println("-------------------");
+
         System.out.print("1");
-        String name = CMUtility.readString(10);
+        String name = CMUtility.readString(10,"1");
         System.out.print("2");
         char gender = CMUtility.readChar('1');
         System.out.print("3");
         int age = CMUtility.readInt(10);
         System.out.print("4");
-        String  phone = CMUtility.readString(20);
+        String  phone = CMUtility.readString(20,"1");
         System.out.print("5");
-        String email = CMUtility.readString(20);
+        String email = CMUtility.readString(20,"1");
         Cusomer c= new Cusomer(name,gender,age,phone,email);
-        customerList.addCustomer(c);
+        boolean flag = customerList.addCustomer(c);
+        if (flag == true){
+            System.out.println("------------------成功");
+        }else{
+            System.out.println("失败");
+        }
     }
 
     /**
@@ -59,16 +66,16 @@ public class CustomerView {
         if(num<0 || num >customerList.getAllCustomers().length) {
             return;
         }else{
-                System.out.println("开始修改1");
-                String name = CMUtility.readString(10);
+                System.out.print("姓名1");
+                String name = CMUtility.readString(10,"1");
                 System.out.print("2");
                 char gender = CMUtility.readChar('1');
                 System.out.print("3");
                 int age = CMUtility.readInt(10);
                 System.out.print("4");
-                String phone = CMUtility.readString(20);
+                String phone = CMUtility.readString(20,"1");
                 System.out.print("5");
-                String email = CMUtility.readString(20);
+                String email = CMUtility.readString(20,"1");
                 Cusomer c = new Cusomer(name, gender, age, phone, email);
             boolean flag =customerList.replaceCustomer(num,c);
             System.out.println(flag +"修改了第" + (num)+"项，修改为 "+ c.getName() );
@@ -85,6 +92,7 @@ public class CustomerView {
         }else {
             customerList.deleteCustomer(num);
         }
+
     }
     private void listAllCustomer(){
         System.out.println("--------------------");
