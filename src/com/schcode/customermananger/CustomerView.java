@@ -170,7 +170,6 @@ public class CustomerView {
         Customer[] allcust = customers.getAllCustomers();
         if (allcust == null){return;}
         for(int i = 0 ;i<allcust.length;i++){
-
                 System.out.print(i + 1 + "\t" + allcust[i].getName() +
                         "\t" + allcust[i].getAge() + "\t" + allcust[i].getGender() + "\t" + allcust[i].getPhone() + "\t" + allcust[i].getEmail());
             }
