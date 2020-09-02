@@ -35,9 +35,10 @@ public class CustomerList {
     public boolean replaceCustomer(int index ,Customer cust){
         if(index < 0 || index >total-1){
             return false;
-        }else {
+        }
+        customers[index] = cust;
 
-        }return true;
+        return true;
 
     }
 
@@ -64,13 +65,15 @@ public class CustomerList {
     public Customer[] getAllCustomers(){
         if (total == 0){
             return null;
+        }else {
+            Customer[] newCusts = new Customer[total];
+
+            for (int i = 0; i < total; i++) {
+                newCusts[i] = customers[i];
+            }
+            return newCusts;
         }
-        Customer[] newCusts = new Customer[total];
-        for (int i = 0; i <total;i++){
-            newCusts[i] = customers[i];
         }
-        return newCusts;
-    }
 
     /**
      * 获取一个客户对象

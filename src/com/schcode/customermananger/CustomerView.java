@@ -45,7 +45,8 @@ public class CustomerView {
                 break;
         }
 
-        }while (loopFlag== false);
+
+        }while (loopFlag==true);
     }
 
     /**
@@ -66,7 +67,6 @@ public class CustomerView {
         //把客户信息封装到对象
         Customer c = new Customer(name,gender,age,phone,emial);
         //把对象添加到数组中
-        customers.addCustomer(c);
         boolean flag = customers.addCustomer(c);
         if (flag){
             System.out.println("-------------成功-------------");
@@ -102,25 +102,30 @@ public class CustomerView {
 
         System.out.print("姓名"+customer.getName()+":");
         String name = CMUtility.readString(20,customer.getName());
+        System.out.println(name);
         System.out.print("性别"+customer.getGender()+":");
         char gender = CMUtility.readChar(customer.getGender());
+        System.out.println(gender);
         System.out.print("年龄:"+customer.getAge()+":");
         int age = CMUtility.readInt(customer.getAge());
+        System.out.println(age);
         System.out.print("电话:"+customer.getPhone()+":");
         String phone = CMUtility.readString(20,customer.getPhone());
+        System.out.println(phone);
         System.out.print("email:"+customer.getEmail()+":");
         String emial = CMUtility.readString(30,customer.getEmail());
+        System.out.println(emial);
         //把用户信息封装成对象
-        Customer cust = new Customer(name,gender,age,phone,emial);
-        boolean flag = customers.replaceCustomer(id-1,cust);
+        Customer custr = new Customer(name,gender,age,phone,emial);
+        boolean flag = customers.replaceCustomer(id-1,custr);
         if(flag){
             System.out.println("修改成功");
-            return;
+
         }
 
         //把客户信息封装到对象
         //获取新对象的信息
-        customers.replaceCustomer(id -1,cust);
+        customers.replaceCustomer(id -1,custr);
 
     }
 
@@ -163,13 +168,15 @@ public class CustomerView {
         System.out.println("--------------------客户列表--------------------");
         System.out.println("编号\t姓名\t性别\t年龄\t电话\t邮箱");
         Customer[] allcust = customers.getAllCustomers();
-
+        if (allcust == null){return;}
         for(int i = 0 ;i<allcust.length;i++){
 
                 System.out.print(i + 1 + "\t" + allcust[i].getName() +
                         "\t" + allcust[i].getAge() + "\t" + allcust[i].getGender() + "\t" + allcust[i].getPhone() + "\t" + allcust[i].getEmail());
             }
-        System.out.println("客户列表完成");
+
+        System.out.println("\n客户列表完成");
+
     }
 
     public static void main(String[] args) {
